@@ -28,10 +28,3 @@ void SelectionSort::printArray(int arr[], int size) {
     }
     std::cout << std::endl;
 }
-
-int main() {
-    int arr[] = {64, 25, 12, 22, 11};
-    int size = sizeof(arr) / sizeof(arr[0]);
-    SelectionSort::sort(arr, size);
-    SelectionSort::printArray(arr, size);
-}
