@@ -6,6 +6,7 @@
 // No salary, but 20% commissions and $20 for each pair of shoes sold
 
 #include <iostream>
+#include "compensation.h"
 using namespace std;
 
 // constants which are used in the program
@@ -29,35 +30,36 @@ int getInput() {
 	}
 }
 
-void calcMethod1() {
-	std::cout << "Method 1: " << kWeeklyWage << std::endl;	
+double calcMethod1() {
+	return kWeeklyWage;
 }
-
-void calcMethod2(int sales) {
+double calcMethod2(int sales) {
 	double perHour, totalPay, commission;
 
 	perHour = kHourlySalary * kHoursPerWeek;
 	commission = (sales * kPriceUnit) * kCommission2;
 	totalPay = perHour + commission;
-	std::cout << "Method 2: " << totalPay << std::endl;	
+	// std::cout << "Method 2: " << totalPay << std::endl;	
+	return totalPay;
 }
 
-void calcMethod3(int sales) {
+double calcMethod3(int sales) {
 	double totalPay, commission, commission2;
 
 	commission = (sales * kPriceUnit) * kCommission3;
 	commission2 = sales * kBonusPerUnit;
 	totalPay = commission + commission2;
-	std::cout << "Method 3: " << totalPay << std::endl;
+	// std::cout << "Method 3: " << totalPay << std::endl;
+	return totalPay;
 }
 
-int main() {
-	int weeklySales;
+// int main() {
+// 	int weeklySales;
 
-	weeklySales = getInput();
-	if (weeklySales == 0)
-		return 0;
-	calcMethod1();
-	calcMethod2(weeklySales);
-	calcMethod3(weeklySales);	
-}
+// 	weeklySales = getInput();
+// 	if (weeklySales == 0)
+// 		return 0;
+// 	calcMethod1();
+// 	calcMethod2(weeklySales);
+// 	calcMethod3(weeklySales);	
+//}
