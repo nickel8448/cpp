@@ -6,7 +6,6 @@
  * @version 0.1 10/06/19
  */
 
-#include <iostream>
 #include "insertionsort.h"
 #include "src/sorts/selection_sort/selectionsort.h"
 
