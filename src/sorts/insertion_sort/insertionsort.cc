@@ -12,18 +12,17 @@
 using InsertionSort::sort;
 using SelectionSort::printArray;
 
-void InsertionSort::sort(int arr[], int size) {
+void InsertionSort::sort(int arr[], const int size) {
     int currentElement;
-
     for (int i = 1; i < size; i++) {
-        currentElement  = arr[i];
-        int prevElement = i - 1;
-
-        while (prevElement >= 0 && arr[prevElement] > currentElement) {
-            // shifting the previous element to the right
-            arr[prevElement + 1] = arr[prevElement];
-            prevElement = prevElement - 1;
+        currentElement = arr[i];
+        int previousElementIndex = i - 1;
+        while(previousElementIndex >= 0 && arr[previousElementIndex] > currentElement) {
+            // Shifting the larger element to the right
+            arr[previousElementIndex + 1] = arr[previousElementIndex];
+            previousElementIndex--;
         }
-        arr[prevElement + 1] = currentElement;
+        arr[previousElementIndex + 1] = currentElement;
     }
 }
+

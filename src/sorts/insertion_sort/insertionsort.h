@@ -9,7 +9,7 @@ namespace InsertionSort {
  * @param arr[] The array to be sorted
  * @param size Size of the array
  */
-void sort(int arr[], int size);
+void sort(int arr[], const int size);
 
 /**
  * Prints an array
@@ -17,7 +17,7 @@ void sort(int arr[], int size);
  * @param arr[] array to be printed
  * @param size size of the array
  */
-void printArray(int arr[], int size);
+void printArray(int arr[], const int size);
 
 }
 
