@@ -7,10 +7,8 @@
  */
 
 #include "insertionsort.h"
-#include "src/sorts/selection_sort/selectionsort.h"
 
 using InsertionSort::sort;
-using SelectionSort::printArray;
 
 void InsertionSort::sort(int arr[], const int size) {
     int currentElement;

@@ -7,7 +7,7 @@
  */
 
 #include "shellsort.h"
-#include "src/sorts/selection_sort/selectionsort.h"
+#include "src/sorts/sort_utils/sort_utils.h"
 
 void ShellSort::sort(int arr[], int size) {
     // Starting with a big gap. size / 2
@@ -27,5 +27,5 @@ int main() {
     int arr[] = {45,2345,435,2,56,1,5,56,900,53,90,4};
     int size = sizeof(arr) / sizeof(arr[0]);
     ShellSort::sort(arr, size);
-    SelectionSort::printArray(arr, size);
+    SortUtil::printArray(arr, size);
 }

@@ -5,8 +5,3 @@ cc_library(
     hdrs = ["selectionsort.h"],
     visibility = ["//visibility:public"],
 )
-
-cc_binary(
-    name = "selectionSortBinary",
-    srcs = ["selectionsort.cc", "selectionsort.h"],
-)
