@@ -13,3 +13,10 @@ void SortUtil::printArray(const int arr[], const int size) {
     }
     std::cout << std::endl;
 }
+
+void SortUtil::printVector(const std::vector<int>& elems) {
+    for (size_t i = 0; i < elems.size(); ++i) {
+        std::cout << elems[i] << " ";
+    }
+    std::cout << std::endl;
+}
