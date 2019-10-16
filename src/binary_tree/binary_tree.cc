@@ -110,15 +110,15 @@ int binarytree::size() {
 
 int binarytree::tiltTree() {
     int total = 0;
-    return binarytree::tiltTree(root, total);
+    binarytree::tiltTree(root, &total);
+    return total;
 }
 
 
-int binarytree::tiltTree(node *leaf, int total) {
-    if (leaf == NULL) return 0;
-    if (leaf->left == NULL && leaf->right == NULL) return leaf->value;
+int binarytree::tiltTree(node *leaf, int *total) {
+    if (!leaf) return 0;
     int leftSubTreeNode = tiltTree(leaf->left, total);
     int rightSubTreeNode = tiltTree(leaf->right, total);
     total = total + std::abs(leftSubTreeNode - rightSubTreeNode);
-    return total;
+    return leftSubTreeNode + rightSubTreeNode + leaf->value;
 }

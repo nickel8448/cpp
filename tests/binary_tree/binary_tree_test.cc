@@ -32,5 +32,5 @@ TEST(BinaryTree, MediumTiltTree) {
     bt.insertNode(20);
     bt.insertNode(60);
     bt.insertNode(90);
-    ASSERT_EQ(80, bt.tiltTree());
+    ASSERT_EQ(160, bt.tiltTree());
 }

@@ -89,7 +89,7 @@ private:
      * @param  *leaf: 
      * @retval 
      */
-    int tiltTree(node *leaf, int total);
+    int tiltTree(node *leaf, int *total);
 
     node *root;
     int treeSize;
