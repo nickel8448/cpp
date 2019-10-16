@@ -21,6 +21,13 @@ binarytree::binarytree() {
 }
 
 
+binarytree::binarytree(const int elements[], const int size) : root(NULL) {
+    for (int i = 0; i < size; i++) {
+        this->insertNode(elements[i]);
+    }
+}
+
+
 /**
  * @brief  Destructor for Binary Tree
  * @retval None
