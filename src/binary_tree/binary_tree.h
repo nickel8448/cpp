@@ -20,6 +20,7 @@ public:
 
     // default constructors
     binarytree();
+    binarytree(const int elements[], const int size);
 
     // default destructor
     ~binarytree();
@@ -66,6 +67,35 @@ public:
      */
     int tiltTree();
 
+
+    /**
+     * @brief  A binary tree is univalued if every node in the tree has the same
+     * value. This is what the function checks
+     * @note   https://leetcode.com/problems/univalued-binary-tree/
+     * @retval Returns true if the binary tree is univalued
+     */
+    bool isUnivalTree();
+
+
+    /**
+     * @brief  Invert a binary tree.
+     * @note   https://leetcode.com/problems/invert-binary-tree/
+     *       4
+     *     /   \
+     *    2     7
+     *   / \   / \
+     *  1   3 6   9
+     *      
+     *       4
+     *     /   \
+     *    7     2
+     *   / \   / \
+     *  9   6 3   1
+     * 
+     * @retval None
+     */
+    void invertBinaryTree();
+
 private:
 
     // Helper function to add nodes to the tree
@@ -90,6 +120,22 @@ private:
      * @retval 
      */
     int tiltTree(node *leaf, int *total);
+
+    /**
+     * @brief  Helper function for inUnivalTree()
+     * @note   https://leetcode.com/problems/univalued-binary-tree/
+     * @param  *leaf: Node to check
+     * @retval 
+     */
+    bool isUnivalTree(node *leaf);
+
+    /**
+     * @brief  Helper function to invert the binary tree
+     * @note   
+     * @param  *leaf: Changes to be made to this node
+     * @retval None
+     */
+    void invertBinaryTree(node *leaf);
 
     node *root;
     int treeSize;
