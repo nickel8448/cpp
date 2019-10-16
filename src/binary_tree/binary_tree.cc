@@ -88,8 +88,8 @@ void binarytree::insertNode(int key, node *&leaf) {
         treeSize++;
         return;
     }
-    if (key == leaf->value) return;
-    if (key < leaf->value) {
+    //if (key == leaf->value) return;
+    if (key <= leaf->value) {
         insertNode(key, leaf->left);
     } else {
         insertNode(key, leaf->right);
