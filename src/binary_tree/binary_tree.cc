@@ -129,3 +129,37 @@ int binarytree::tiltTree(node *leaf, int *total) {
     total = total + std::abs(leftSubTreeNode - rightSubTreeNode);
     return leftSubTreeNode + rightSubTreeNode + leaf->value;
 }
+
+
+bool binarytree::isUnivalTree() {
+    return binarytree::isUnivalTree(root);
+}
+
+
+bool binarytree::isUnivalTree(node *leaf) {
+    if (leaf == nullptr) return true;
+    if (leaf->left != nullptr && leaf->value != leaf->left->value) return false;
+    if (leaf->right != nullptr && leaf->value != leaf->right->value) return false;
+    return isUnivalTree(leaf->left) && isUnivalTree(leaf->right);
+}
+
+
+void binarytree::invertBinaryTree() {
+    binarytree::invertBinaryTree(root);
+}
+
+
+void binarytree::invertBinaryTree(node *leaf) {
+    if (leaf == nullptr) return;
+    invertBinaryTree(leaf->left);
+    invertBinaryTree(leaf->right); 
+    if (leaf->left != nullptr && leaf->right != nullptr) {
+        node *tempNode = leaf->right;
+        leaf->right = leaf->left;
+        leaf->left = tempNode;
+    } else if (leaf->left == nullptr) {
+        leaf->left = leaf->right;
+    } else {
+        leaf->right = leaf->left;
+    }
+}
