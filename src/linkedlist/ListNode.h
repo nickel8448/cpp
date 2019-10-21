@@ -9,14 +9,10 @@
 class ListNode {
 
 public:
-    ListNode();
-    ListNode(int val);
-    ~ListNode();
+    ListNode() = default;
 
-    inline void setPrev(ListNode &node) { *prev = node; }
-    inline ListNode* getPrev() { return prev; }
-    inline void setNext(ListNode &node) { *next = node; }
-    inline ListNode* getNext() { return next; }
+    explicit ListNode(int val) : value(val) {} 
+
     inline void setValue(int value) { this->value = value; }
     inline int getValue() { return value; }
 
