@@ -145,21 +145,33 @@ bool binarytree::isUnivalTree(node *leaf) {
 
 
 void binarytree::invertBinaryTree() {
-    binarytree::invertBinaryTree(root);
+    root = binarytree::invertBinaryTree(root);
 }
 
 
-void binarytree::invertBinaryTree(node *leaf) {
-    if (leaf == nullptr) return;
-    invertBinaryTree(leaf->left);
-    invertBinaryTree(leaf->right); 
-    if (leaf->left != nullptr && leaf->right != nullptr) {
-        node *tempNode = leaf->right;
-        leaf->right = leaf->left;
-        leaf->left = tempNode;
-    } else if (leaf->left == nullptr) {
-        leaf->left = leaf->right;
-    } else {
-        leaf->right = leaf->left;
+node* binarytree::invertBinaryTree(node *leaf) {
+    if (leaf != NULL) {
+        invertBinaryTree(leaf->left);
+        invertBinaryTree(leaf->right);
+        std::swap(leaf->left, leaf->right);
     }
+    return leaf;
 }
+
+
+//TODO: Create the remove function
+
+// void binarytree::invertBinaryTree(node *leaf) {
+//     if (leaf == nullptr) return;
+//     invertBinaryTree(leaf->left);
+//     invertBinaryTree(leaf->right); 
+//     if (leaf->left != nullptr && leaf->right != nullptr) {
+//         node *tempNode = leaf->right;
+//         leaf->right = leaf->left;
+//         leaf->left = tempNode;
+//     } else if (leaf->left == nullptr) {
+//         leaf->left = leaf->right;
+//     } else {
+//         leaf->right = leaf->left;
+//     }
+// }
