@@ -135,7 +135,7 @@ private:
      * @param  *leaf: Changes to be made to this node
      * @retval None
      */
-    void invertBinaryTree(node *leaf);
+    node* invertBinaryTree(node *root);
 
     node *root;
     int treeSize;
