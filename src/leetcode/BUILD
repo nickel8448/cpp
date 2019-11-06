@@ -40,3 +40,19 @@ cc_library(
   hdrs = ["remove_duplicates.h"],
   visibility = ["//visibility:public"],
 )
+
+# https://docs.bazel.build/versions/master/be/c-cpp.html#cc_library
+cc_library(
+  name = "isomorphic_string",
+  srcs = ["isomorphic_strings.cc"],
+  hdrs = ["isomorphic_strings.h"],
+  visibility = ["//visibility:public"],
+)
+
+# https://docs.bazel.build/versions/master/be/c-cpp.html#cc_binary
+cc_binary(
+  name = "isomorphic_string_binary",
+  srcs = [
+    "isomorphic_strings.cc",
+    "isomorphic_strings.h",],
+)

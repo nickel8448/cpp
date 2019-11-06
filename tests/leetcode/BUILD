@@ -15,3 +15,12 @@ cc_test(
         "@googletest//:gtest_main",
     ],
 )
+
+cc_test(
+    name = "isomorphic_string_test",
+    srcs = ["isomorphic_strings_test.cc"],
+    deps = [
+        "//src/leetcode:isomorphic_string",
+        "@googletest//:gtest_main",
+    ],
+)
