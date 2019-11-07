@@ -56,3 +56,28 @@ cc_binary(
     "isomorphic_strings.cc",
     "isomorphic_strings.h",],
 )
+
+cc_library(
+  name = "split_balanced_string",
+  srcs = ["split_balanced_string.cc"],
+  hdrs = ["split_balanced_string.h"],
+  visibility = ["//visibility:public"],
+)
+
+# https://docs.bazel.build/versions/master/be/c-cpp.html#cc_binary
+cc_binary(
+  name = "split_balanced_binary",
+  srcs = ["split_balanced_string.cc", "split_balanced_string.h"],
+)
+
+cc_binary(
+  name = "reverse_words_binary",
+  srcs = ["reverse_words_in_a_string.cc", "reverse_words_in_a_string.h"],
+)
+
+cc_library(
+  name = "reverse_words",
+  srcs = ["reverse_words_in_a_string.cc"],
+  hdrs = ["reverse_words_in_a_string.h"],
+  visibility = ["//visibility:public"],
+)
