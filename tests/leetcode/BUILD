@@ -24,3 +24,21 @@ cc_test(
         "@googletest//:gtest_main",
     ],
 )
+
+cc_test(
+    name = "split_string_test",
+    srcs = ["split_balanced_string_test.cc"],
+    deps = [
+        "//src/leetcode:split_balanced_string",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "reverse_words_test",
+    srcs = ["reverse_words_in_a_string_test.cc"],
+    deps = [
+        "//src/leetcode:reverse_words",
+        "@googletest//:gtest_main",
+    ],
+)
