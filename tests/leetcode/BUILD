@@ -51,3 +51,13 @@ cc_test(
         "@googletest//:gtest_main",
     ],
 )
+
+
+cc_test(
+    name = "last_word_test",
+    srcs = ["length_of_last_word_test.cc"],
+    deps = [
+        "//src/leetcode:length_of_last_word",
+        "@googletest//:gtest_main",
+    ],
+)

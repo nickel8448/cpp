@@ -88,3 +88,10 @@ cc_library(
   hdrs = ["add_strings.h"],
   visibility = ["//visibility:public"],
 )
+
+cc_library(
+  name = "length_of_last_word",
+  srcs = ["strings/length_of_last_word.cc"],
+  hdrs = ["strings/length_of_last_word.h"],
+  visibility = ["//visibility:public"],
+)
