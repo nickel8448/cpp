@@ -81,3 +81,10 @@ cc_library(
   hdrs = ["reverse_words_in_a_string.h"],
   visibility = ["//visibility:public"],
 )
+
+cc_library(
+  name = "add_strings",
+  srcs = ["add_strings.cc"],
+  hdrs = ["add_strings.h"],
+  visibility = ["//visibility:public"],
+)

@@ -42,3 +42,12 @@ cc_test(
         "@googletest//:gtest_main",
     ],
 )
+
+cc_test(
+    name = "add_strings_test",
+    srcs = ["add_strings_test.cc"],
+    deps = [
+        "//src/leetcode:add_strings",
+        "@googletest//:gtest_main",
+    ],
+)
