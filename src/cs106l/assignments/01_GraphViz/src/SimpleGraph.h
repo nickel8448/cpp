@@ -15,6 +15,14 @@
 #include <QWidget>
 #include <QTime>
 
+
+/**
+ * Type: Constant
+ * -----------------------------------------------------------------------
+ * Declaring the pi constant which can be used for computation
+ */
+const double kPi = 3.14159265358979323;
+
 /**
  * Type: Node
  * -----------------------------------------------------------------------

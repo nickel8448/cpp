@@ -26,7 +26,6 @@ const QString kCircleLine = "#0d0d0d";
 const QString kLineColor = "#606060";
 
 
-
 /* global semaphore to ensure only one update call at a time.
  * Prevents overload of update calls */
 

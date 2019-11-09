@@ -55,7 +55,7 @@ void gamemechanics::performAI(gameT& game) {
 	// from time_t to the unsigned int required by srand. This line is
 	// idiomatic C++
 	// TODO: Try removing this and see the results
-    srand(static_cast<unsigned int>(time(NULL)));
+	srand(static_cast<unsigned int>(time(NULL)));
 
 	// Figure out where we will be after we move this turn
 	pointT nextHead = gamemechanics::getNextHeadPosition(game, game.dx, game.dy);	
