@@ -55,12 +55,34 @@ inline bool isLessThan5(int num) {
   return (num < 5);
 }
 
+// This class is used to define a functor which is later being supplied to a
+// function which can only take a unary function
+class ShorterThan {
+public:
+  explicit ShorterThan(size_t num) : shorterThanVar(num) {}
+  
+  bool operator() (const int num) const {
+    return num < shorterThanVar;
+  }
+
+private:
+  const int shorterThanVar;
+};
+
 
 // Function to utilize generic function
+// This function has an implicit interface in the lambda function. It is
+// assuming that the datatype of counting the occurance function is going to be
+// int, this can be problematic.
+// (TODO): Understand how to fix the implicit interface in this case
 void useCountOccurenceFunction() {
   std::vector<int> testing {1, 2, 3, 4, 5, 6};
+  int value = 5;
+  auto isLessThanLambda = [&value](auto num)->bool { return num < value; };
+  // Using a temporary object as the last argument as the object has overloaded
+  // the operator()
   std::cout << countOccurencesUsingPredicator(testing.begin(), testing.end(),
-      isLessThan5) << std::endl;
+      ShorterThan(5)) << std::endl;
 }
 
 

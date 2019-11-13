@@ -6,7 +6,7 @@
 #include "SimpleGraph.h"
 
 const double kRepel = 0.001;
-const double kAttract = 0.0001;
+const double kAttract = 0.001;
 
 namespace GraphUtils {
 
