@@ -44,3 +44,21 @@ cc_binary(
   srcs = ["stl_palindrome.cc"],
   copts = ['-std=c++14'],
 )
+
+cc_binary(
+  name = "remove_short_words",
+  srcs = ["remove_short_words.cc"],
+  copts = ['-std=c++14'],
+)
+
+cc_binary(
+  name = "distance_to_origin",
+  srcs = ["distance_to_origin.cc"],
+  copts = ['-std=c++14'],
+)
+
+cc_binary(
+  name = "critics_pick",
+  srcs = ["critics_pick.cc"],
+  copts = ['-std=c++14'],
+)
