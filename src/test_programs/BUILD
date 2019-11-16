@@ -62,3 +62,21 @@ cc_binary(
   srcs = ["critics_pick.cc"],
   copts = ['-std=c++14'],
 )
+
+cc_binary(
+  name = "generaten",
+  srcs = ["generaten.cc"],
+  copts = ['-std=c++14'],
+)
+
+cc_binary(
+  name = "buf_iterator",
+  srcs = ["open_file_buf_iterator.cc"],
+  copts = ['-std=c++14'],
+)
+
+cc_binary(
+  name = "vector_intersection",
+  srcs = ["vector_intersection.cc"],
+  copts = ['-std=c++14'],
+)

@@ -40,11 +40,6 @@ bool IsPalindrome(std::string input) {
       input.begin(),
       input.end());
 
-  /* auto rItr = tokens.begin(); */
-  /* for (rItr; rItr != tokens.end(); ++rItr) { */
-  /*   std::cout << *rItr << std::endl; */
-  /* } */
-
   std::copy(std::rbegin(tokens), std::rend(tokens),
       std::ostream_iterator<char>(std::cout, " "));
 
