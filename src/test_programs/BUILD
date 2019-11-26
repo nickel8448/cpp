@@ -80,3 +80,9 @@ cc_binary(
   srcs = ["vector_intersection.cc"],
   copts = ['-std=c++14'],
 )
+
+cc_binary(
+  name = "text_similarity",
+  srcs = ["text_similarity.cc"],
+  copts = ['-std=c++14'],
+)
