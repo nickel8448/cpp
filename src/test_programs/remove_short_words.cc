@@ -31,7 +31,8 @@ std::string GenerateRandomWord() {
 }
 
 
-void GenerateNWords(std::vector<std::string>& container, const int& numWords) {
+inline void GenerateNWords(std::vector<std::string>& container,
+  const int& numWords) {
   for (int i = 0; i < numWords; ++i) {
     container.push_back(GenerateRandomWord());
   }

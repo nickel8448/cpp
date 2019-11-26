@@ -31,19 +31,12 @@ bool IsPalindrome(std::string input) {
   };
   std::transform(input.begin(), input.end(), input.begin(), ToUpperFun);
 
-  std::stringstream tokenizer(input);
+  std::stringstream tokenizer(input); //  Not really required
   std::vector<char> tokens;
 
   // as a char comes in the input stream which is made up of tokenizer, the
   // element should be added to the beginning of the tokens vector
-  tokens.insert(tokens.begin(),
-      input.begin(),
-      input.end());
-
-  /* auto rItr = tokens.begin(); */
-  /* for (rItr; rItr != tokens.end(); ++rItr) { */
-  /*   std::cout << *rItr << std::endl; */
-  /* } */
+  tokens.insert(tokens.begin(), input.begin(), input.end());
 
   std::copy(std::rbegin(tokens), std::rend(tokens),
       std::ostream_iterator<char>(std::cout, " "));

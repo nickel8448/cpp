@@ -10,6 +10,7 @@
 #include <set>
 #include <iostream>
 #include <vector>
+#include <stack>
 
 
 /**
@@ -68,4 +69,5 @@ void intSetExperiment() {
 
 int main() {
   vectorToSetUsingIterator();
+  std::stack<int, std::vector<int>> vectorStack;
 }
