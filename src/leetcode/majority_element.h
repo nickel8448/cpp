@@ -3,7 +3,6 @@
 
 #include <vector>
 
-
 int boyerMooreMajority(std::vector<int>& nums);
 
 int majorityElement(std::vector<int>& nums);

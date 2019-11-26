@@ -31,7 +31,6 @@ bool IsPalindrome(std::string input) {
   };
   std::transform(input.begin(), input.end(), input.begin(), ToUpperFun);
 
-  std::stringstream tokenizer(input); //  Not really required
   std::vector<char> tokens;
 
   // as a char comes in the input stream which is made up of tokenizer, the
