@@ -28,7 +28,6 @@ std::string generateLongString(int size) {
 	return output;
 }
 
-
 void addElementsToVector(std::vector<std::string>& elementsVector) {
 	for (int i = 0; i < kNumElementsToAdd; i++) {
 		elementsVector.push_back(generateLongString(kStringLength));
