@@ -28,6 +28,24 @@ void UseBinding(const std::vector<std::string>& words) {
             << std::endl;
 }
 
+// Class un is a function object which is a derived class of a unary function
+template <typename UnaryPredicate>
+class un : public std::unary_function<typename UnaryPredicate::argument_type, bool> {
+  public:
+    explicit un(const UnaryPredicate& pred) : p(pred) {}
+  
+    bool operator()(const typename UnaryPredicate::argument_type& param) const {
+      return !p(param);
+    }
+  private:
+    UnaryPredicate p;
+};
+
+template <typename UnaryPredicate>
+un<UnaryPredicate> not1(const UnaryPredicate& pred) {
+  return un<UnaryPredicate>(pred);
+}
+
 int main() {
   std::vector<std::string> words;
   words.push_back("hello");
