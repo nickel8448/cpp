@@ -51,6 +51,7 @@ void UseBinding(const std::vector<std::string>& words) {
             << std::endl;
 }
 
+<<<<<<< HEAD
 // Function to understand how to use lambda on a vector of string
 void UseLambda(const std::vector<std::string>& words, const size_t& length) {
   auto lengthFn = [length](const std::string& str) {
@@ -62,6 +63,25 @@ void UseLambda(const std::vector<std::string>& words, const size_t& length) {
 
 
 
+=======
+// Class un is a function object which is a derived class of a unary function
+template <typename UnaryPredicate>
+class un : public std::unary_function<typename UnaryPredicate::argument_type, bool> {
+  public:
+    explicit un(const UnaryPredicate& pred) : p(pred) {}
+  
+    bool operator()(const typename UnaryPredicate::argument_type& param) const {
+      return !p(param);
+    }
+  private:
+    UnaryPredicate p;
+};
+
+template <typename UnaryPredicate>
+un<UnaryPredicate> not1(const UnaryPredicate& pred) {
+  return un<UnaryPredicate>(pred);
+}
+>>>>>>> 998bdfd989209e69acf28d754d8bb077626e43ad
 
 int main() {
   std::vector<std::string> words;
