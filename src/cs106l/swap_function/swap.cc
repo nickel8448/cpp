@@ -24,6 +24,7 @@ void swapFn(T& obj1, T& obj2) {
 int main() {
   std::vector<std::string> v1(10, "IT");
   std::vector<std::string> v2(10, "EN");
+  std::vector<std::string> v3(10, "yo");
   swapFn(v1, v2);
   std::copy(v1.begin(), v1.end(),
       std::ostream_iterator<std::string>(std::cout, " "));

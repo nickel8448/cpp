@@ -35,6 +35,7 @@ std::ifstream OpenFile() {
         getline(std::cin, fileName);
 
         std::ifstream fileStream(fileName);
+        fileStream.
         if (!fileStream.is_open()) {
             std::cout << "File could not be opened: ";
             std::cout << strerror(errno) << "\nPlease try again.\n";

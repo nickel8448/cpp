@@ -23,7 +23,7 @@
 bool isIsomorphicUsingMap(std::string s, std::string t) {
   std::map<char, int> diffMap;
   std::set<char> secondSet;
-  
+ 
   // assuming that the length of s and t is the same
   for (size_t i = 0; i < s.length(); i++) {
     int diffInChar = s.at(i) - t.at(i);

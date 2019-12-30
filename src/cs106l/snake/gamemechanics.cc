@@ -8,7 +8,7 @@
 
 #include <ctime>
 #include <cstdlib>
-	
+#include <vector>
 #include "gamemechanics.h"
 
 pointT gamemechanics::makePoint(int row, int col) {

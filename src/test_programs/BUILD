@@ -94,3 +94,8 @@ cc_binary(
   srcs = ["text_similarity.cc"],
   copts = ['-std=c++14'],
 )
+
+cc_binary(
+  name = "rule_of_three",
+  srcs = ["ArrayRuleOfThree.cc"],
+)

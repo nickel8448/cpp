@@ -12,8 +12,9 @@ class StrVector {
   // Defining the move constructor
   StrVector(StrVector&& obj);
 
+
   // Move assignment operator
-  StrVector& operator=(StrVector&& obj);
+  StrVector& operator=(StrVector&& obj) noexcept;
 
  private:
   std::vector<std::string> elems;
@@ -29,7 +30,7 @@ StrVector::StrVector(StrVector&& obj) {
   obj.elems.clear();
 }
 
-StrVector& StrVector::operator=(StrVector&& obj) {
+StrVector& StrVector::operator=(StrVector&& obj) noexcept {
   std::cout << "Move assignment called" << std::endl;
   // Self-detection check
   if (&obj == this)

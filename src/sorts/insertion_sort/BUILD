@@ -6,3 +6,8 @@ cc_library(
     deps = ["//src/sorts/selection_sort:selectionsort"],
     visibility = ["//visibility:public"],
 )
+
+cc_binary(
+    name = "insertionsortbinary",
+    srcs = ["insertionsort_algobook.cc"],
+)

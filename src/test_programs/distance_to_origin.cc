@@ -1,7 +1,7 @@
 /**
  * remove_short_words.cc
  * Purpose: Problem 7 from Chapter 7. Write a function using remove_if to
- *  
+ *
  * @author Rahul W
  * @version 0.1 11/13/19
  */
@@ -10,6 +10,7 @@
 #include <numeric>
 #include <cmath>
 #include <iostream>
+#include <float
 
 
 // Function computes the distance to origin for the given points

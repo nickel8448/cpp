@@ -1,7 +1,6 @@
 #include <iostream>
 #include <algorithm>
 #include <iterator>
-
 #include "src/test_programs/stack_class.h"
 
 int main() {
@@ -18,6 +17,8 @@ int main() {
   // declaring a pointer to const
   const char* myPointerToConst = "Hello World2";
   std::cout << &myPointerToConst << std::endl;
+  std::vector<int> a;
+  a.push_back
 
   // Changing the 
   myPointerToConst = "New World";
