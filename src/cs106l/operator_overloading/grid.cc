@@ -102,6 +102,7 @@ typename grid<T>::const_iterator grid<T>::row_end(size_t row) const {
   return row_begin(row) + numCols();
 }
 
+// Default constructor for MutableReference class
 template <typename T>
 grid<T>::MutableReference::MutableReference(grid* owner, size_t row) :
   owner(owner), row(row) {
@@ -117,6 +118,7 @@ template <typename T>
 typename grid<T>::MutableReference grid<T>::operator[](size_t row) {
   return MutableReference(this, row); 
   // MutableReference.operator[row] - This is the call which will be made
+  // This function returns a MutableReference
 }
 
 template <typename T>

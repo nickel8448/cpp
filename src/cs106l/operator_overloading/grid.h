@@ -59,6 +59,8 @@ public:
   // the grid, it is sometimes known as a proxy object
   class MutableReference {
   public:
+    // Grid is a friend of MutableReference so that the grid can call the
+    // private constructor necessary to initialize a MutableReference
     friend class grid;
     T& operator[](size_t col);
 
