@@ -25,3 +25,8 @@ cc_binary(
     name = "maximum_subarray",
     srcs = ["maximum_subarray.cc"],
 )
+
+cc_binary(
+    name = "majority_element",
+    srcs = ["majority_element.cc"],
+)
