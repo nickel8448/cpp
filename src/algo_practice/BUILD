@@ -20,3 +20,8 @@ cc_binary(
     name = "matrix_multiplication",
     srcs = ["matrix_multiplication.cc"],
 )
+
+cc_binary(
+    name = "maximum_subarray",
+    srcs = ["maximum_subarray.cc"],
+)
