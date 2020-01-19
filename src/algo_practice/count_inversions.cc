@@ -1,12 +1,15 @@
 #include <algorithm>
+#include <fstream>
 #include <vector>
 #include <iterator>
 #include <iostream>
 
+#include "count_inversions.h"
+
 using std::vector;
 
 void SortAndCountInversions(vector<int> &left, vector<int> &right,
-                            vector<int> &input, int &inversionTracker)
+                            vector<int> &input, unsigned long &inversionTracker)
 {
   // Filling values in the left and right array
   vector<int> leftVector(left.begin(), left.end());
@@ -38,7 +41,13 @@ void SortAndCountInversions(vector<int> &left, vector<int> &right,
   }
 }
 
-int SortAndCountInversions(vector<int> &input, int &inversionTracker) {
+unsigned long CountInversions(vector<int> &input) {
+  unsigned long inversionTracker = 0;
+  return CountInversionsRec(input, inversionTracker);
+}
+
+unsigned long CountInversionsRec(vector<int> &input,
+                                 unsigned long &inversionTracker) {
   if (input.size() < 2)
     return 0;
   int midIndex = input.size() / 2;
@@ -50,25 +59,18 @@ int SortAndCountInversions(vector<int> &input, int &inversionTracker) {
   std::copy(input.begin() + midIndex, input.end(), std::back_inserter(right));
 
   // Working on the merge sort and counting inversions
-  SortAndCountInversions(left, inversionTracker);
-  SortAndCountInversions(right, inversionTracker);
+  CountInversionsRec(left, inversionTracker);
+  CountInversionsRec(right, inversionTracker);
   SortAndCountInversions(left, right, input, inversionTracker);
   return inversionTracker;
 }
 
-int main(int argc, char const *argv[])
-{
-  vector<int> mainVector;
-  mainVector.push_back(6);
-  mainVector.push_back(4);
-  mainVector.push_back(2);
-  mainVector.push_back(5);
-  mainVector.push_back(3);
-  mainVector.push_back(1);
-  int inversionTracker = 0;
-  std::cout << "Num of inversions: "
-            << SortAndCountInversions(mainVector, inversionTracker)
-            << std::endl;
-  std::copy(mainVector.begin(), mainVector.end(), std::ostream_iterator<int>(std::cout, " "));
-  return 0;
+int main() {
+  // Reading the numbers from the file into a vector
+  std::ifstream is("res/inversion.txt");
+  if (is.fail()) std::cout << "File could not be opened" << std::endl;
+  std::istream_iterator<int> start(is), end;
+  vector<int> numbers(start, end);
+
+  std::cout << "Number of inversions: " << CountInversions(numbers) << std::endl;
 }

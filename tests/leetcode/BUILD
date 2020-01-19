@@ -52,12 +52,20 @@ cc_test(
     ],
 )
 
-
 cc_test(
     name = "last_word_test",
     srcs = ["length_of_last_word_test.cc"],
     deps = [
         "//src/leetcode:length_of_last_word",
+        "@googletest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "count_inversions_test",
+    srcs = ["count_inversions_test.cc"],
+    deps = [
+        "//src/algo_practice:count_inversions",
         "@googletest//:gtest_main",
     ],
 )

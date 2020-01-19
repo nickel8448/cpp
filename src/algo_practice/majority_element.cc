@@ -19,7 +19,8 @@ template <typename iterator_type>
 int countInRange(iterator_type itr, iterator_type end, const int num) {
   int count = 0;
   for (; itr != end; ++itr) {
-    ++count;
+    if (*itr == num)
+      ++count;
   }
   return count;
 }
@@ -33,19 +34,21 @@ int majorityElementRec(vector<int> &nums) {
   size_t midIndex = nums.size() / 2;
   vector<int> leftVector(nums.begin(), nums.begin() + midIndex);
   vector<int> rightVector(nums.begin() + midIndex, nums.end());
-  int leftMax = majorityElementRec(leftVector);
-  int rightMax = majorityElementRec(rightVector);
+  int left = majorityElementRec(leftVector);
+  int right = majorityElementRec(rightVector);
 
-  if (leftMax == rightMax) return leftMax;
+  if (left == right)
+    return left;
 
-  int leftCount = countInRange(leftVector.begin(), leftVector.end(), leftMax);
-  int rightCount = countInRange(rightVector.begin(), rightVector.end(), rightMax);
+  int leftCount = countInRange(leftVector.begin(), leftVector.end(), left);
+  int rightCount = countInRange(rightVector.begin(), rightVector.end(), right);
 
-  return (leftCount > rightCount) ? leftMax : rightMax;
+  return (leftCount > rightCount) ? left : right;
 }
 
 int main() {
-  vector<int> nums{3, 3, 3, 3, 3, 3, 1, 2};
-  std::cout <<majorityElementRec(nums) << std::endl;
-
+  // vector<int> nums{3, 3, 3, 3, 3, 3, 1, 2};
+  vector<int> nums2{4, 4, 3};
+  // std::cout <<majorityElementRec(nums) << std::endl;
+  std::cout <<majorityElementRec(nums2) << std::endl;
 }
