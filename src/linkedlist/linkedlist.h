@@ -23,7 +23,15 @@ class LinkedList {
     // Reverses a linkedlist
     void ReverseLinkedList();
 
-    bool CompareLinkedLists(LinkedList *l1, LinkedList *l2);
+    // Compares two linked list
+    bool CompareLinkedLists(const LinkedList *l1, const LinkedList *l2);
+
+    // Get n node from the tail
+    int GetNodeFromTail(const LinkedList *l1, int position);
+
+    // Removes duplicates from a sorted linked list
+    void RemoveDuplicates(LinkedList *l1);
+
   private:
     ListNode *head;
 
@@ -39,6 +47,12 @@ class LinkedList {
     // Compares two linked list. The lists are equal only if they have the
     // same number of nodes and corresponding nodes contain the same data.
     bool CompareLinkedLists(ListNode *head1, ListNode *head2);
+
+    // Get n node from the tail helper function
+    int GetNodeFromTail(ListNode *head, int position);
+
+    // Removes duplicates from a sorted linked lis helper function
+    ListNode* RemoveDuplicates(ListNode *head);
 };
 
 #endif

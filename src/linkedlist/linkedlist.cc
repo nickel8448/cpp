@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <iostream>
 
 #include "linkedlist.h"
@@ -37,9 +38,10 @@ void LinkedList::InsertNodeAtTail(int data) {
 
 void LinkedList::PrintList(ListNode *head) {
   while (head != nullptr) {
-    std::cout << head->data << std::endl;
+    std::cout << head->data << ", ";
     head = head->next;
   }
+  std::cout << std::endl;
 }
 
 
@@ -78,27 +80,78 @@ ListNode* LinkedList::ReverseLinkedList(ListNode *head) {
 }
 
 
-bool LinkedList::CompareLinkedLists(LinkedList *l1, LinkedList *l2) {
+bool LinkedList::CompareLinkedLists(const LinkedList *l1,
+    const LinkedList *l2) {
   return CompareLinkedLists(l1->head, l2->head);
 }
 
 
 bool LinkedList::CompareLinkedLists(ListNode *head1, ListNode *head2) {
-  while (head1 != nullptr && head2 != nullptr) {
-    if (head1->data != head2->data) return false;
-    head1 = head1->next;
-    head2 = head2->next;
+  ListNode *anchorNode = new ListNode;
+  ListNode *bridge = anchorNode;
+  while(head1 && head2) {
+    if (head1->data < head2->data) {
+      bridge->next = head1;
+      head1 = head1->next;
+    } else {
+      bridge->next = head2;
+      head2 = head2->next;
+    }
+    bridge = bridge->next;
   }
-  return (head1 == nullptr && head2 == nullptr);
+  bridge->next = head1 ? head1 : head2;
+  return anchorNode->next;
+}
+
+
+void LinkedList::RemoveDuplicates(LinkedList *l1) {
+  l1->head = RemoveDuplicates(l1->head);
+}
+
+
+ListNode* LinkedList::RemoveDuplicates(ListNode *head) {
+  ListNode *current = head; // might not need this
+  ListNode *traversal = new ListNode;
+  while (current != nullptr && current->next != nullptr) {
+    if(current->data == current->next->data) {
+      traversal = current->next->next;
+      if (traversal == nullptr) {
+        current->next = nullptr;
+        break;
+      }
+      current->next = traversal;
+    }
+    if(current->data != current->next->data) current = current->next;
+  }
+  return head;
+}
+
+
+int LinkedList::GetNodeFromTail(const LinkedList *l1, int position) {
+  return GetNodeFromTail(l1->head, position);
+}
+
+int LinkedList::GetNodeFromTail(ListNode *head, int position) {
+  ListNode *refNode = head;
+  for(int i = 0; i <= position; ++i) {
+    refNode = refNode->next;
+  }
+  while (refNode != nullptr) {
+    head = head->next;
+    refNode = refNode->next;
+  }
+  return head->data;
 }
 
 
 int main() {
-  LinkedList l1, l2, l3;
-  l1.AddNode(1);
-  l1.AddNode(2);
-  l2.AddNode(1);
-  l2.AddNode(2);
-  std::cout << "Comparing l1 and l2: " << std::boolalpha
-            << l1.CompareLinkedLists(&l1, &l2) << std::endl;
+  LinkedList l1;
+  for (int i = 0; i < 5; ++i) {
+    for (int j = 0; j < 5; ++j) {
+      l1.AddNode(4 - i);
+    }
+  }
+  l1.PrintList();
+  l1.RemoveDuplicates(&l1);
+  l1.PrintList();
 }
