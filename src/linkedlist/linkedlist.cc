@@ -62,22 +62,36 @@ ListNode* LinkedList::InsertNodeAtTail(ListNode *head, int data) {
 }
 
 ListNode* LinkedList::ReverseLinkedList(ListNode *head) {
-  ListNode *current = head;
-  ListNode *prev = nullptr, *next = nullptr;
-  while (current != nullptr) {
-    // Store next
-    next = current->next;
-    
-    // Reverse current node's pointer
-    current->next = prev;
-
-    // Move pointer one position
-    prev = current;
-    current = next;
-  }
-  head = prev;
-  return head;
+  return ReverseLinkedListHelper(head, nullptr);
 }
+
+ListNode* LinkedList::ReverseLinkedListHelper(ListNode *head, ListNode *prev) {
+  if (head == nullptr) return prev;
+  ListNode *next = head->next;
+  head->next = prev;
+  return ReverseLinkedListHelper(next, head);
+}
+
+// 1. If head is not null, return prev
+// 2. 
+
+/* ListNode* LinkedList::ReverseLinkedList(ListNode *head) { */
+/*   ListNode *current = head; */
+/*   ListNode *prev = nullptr, *next = nullptr; */
+/*   while (current != nullptr) { */
+/*     // Store next */
+/*     next = current->next; */
+    
+/*     // Reverse current node's pointer */
+/*     current->next = prev; */
+
+/*     // Move pointer one position */
+/*     prev = current; */
+/*     current = next; */
+/*   } */
+/*   head = prev; */
+/*   return head; */
+/* } */
 
 
 bool LinkedList::CompareLinkedLists(const LinkedList *l1,
@@ -152,6 +166,6 @@ int main() {
     }
   }
   l1.PrintList();
-  l1.RemoveDuplicates(&l1);
+  l1.ReverseLinkedList();
   l1.PrintList();
 }

@@ -7,8 +7,7 @@ struct ListNode {
 };
 
 class LinkedList {
-  public:
-    // Default constructor
+  public: // Default constructor
     LinkedList();
 
     // Add a node to the linked list
@@ -43,6 +42,8 @@ class LinkedList {
 
     // Helper function to reverse a linkedlist
     ListNode* ReverseLinkedList(ListNode *head);
+
+    ListNode* ReverseLinkedListHelper(ListNode *head, ListNode *prev);
 
     // Compares two linked list. The lists are equal only if they have the
     // same number of nodes and corresponding nodes contain the same data.
