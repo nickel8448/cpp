@@ -36,6 +36,9 @@ class AVLTree {
     // the <key, true>, if key is not found it returns <key, false>
     std::pair<int, bool> SearchKey(int key);
 
+    // Checks if the tree is balanced or not
+    bool IsBalanced();
+
   private:
     // Node variable
     Node *root;
@@ -46,14 +49,29 @@ class AVLTree {
     // Helper function to print the tree
     void PrintTree(Node *root);
 
-    bool IsBalanced(Node *root);
-
     // Function to get the size of the tree/subtree
     int GetTreeSize(Node *root);
 
     // Helper function to search for a specific key in the tree
     std::pair<int, bool> SearchKey(Node *root, int key);
-};
 
+    // Function checks if the tree is balanced or not
+    bool IsBalanced(Node *root);
+
+    // Returns an abosolute integer
+    inline int GetAbsoluteInteger(int num);
+
+    // Calculates the balace factor for the node
+    inline int BalanceFactor(Node *root);
+
+    // Rebalances the tree at the root node
+    Node* RebalanceTree(Node *root);
+
+    // Left rotate the tree at the node supplied
+    Node* LeftRotate(Node *root);
+
+    // Right rotate the tree at the node supplied
+    Node* RightRotate(Node *root);
+};
 
 #endif
