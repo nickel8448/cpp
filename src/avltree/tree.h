@@ -39,6 +39,15 @@ class AVLTree {
     // Checks if the tree is balanced or not
     bool IsBalanced();
 
+    // Draws the tree on the console
+    void DrawTree();
+
+    // Returns the min element in the tree
+    int GetMinElement();
+
+    // Returns the max element in the tree
+    int GetMaxElement();
+
   private:
     // Node variable
     Node *root;
@@ -72,6 +81,15 @@ class AVLTree {
 
     // Right rotate the tree at the node supplied
     Node* RightRotate(Node *root);
+
+    // Helper function to draw the tree
+    void DrawTree(Node *current, int indent);
+
+    // Helper function to return the min element
+    int GetMinElement(Node *root);
+
+    // Helper function to return the max element
+    int GetMaxElement(Node *root);
 };
 
 #endif

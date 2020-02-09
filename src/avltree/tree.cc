@@ -10,10 +10,12 @@
 /**
  * Pending implementations:
  * 1. Check if the tree is balanced - done
- * 2. Do rotations when a node is inserted
+ * 2. Do rotations when a node is inserted - done
  * 3. Create delete
- * 4. Min
- * 5. Max
+ * 3.1 Create delete min
+ * 3.2 Create delete max
+ * 4. Min - done
+ * 5. Max - done
  * 6. Successor
  * 7. Predecessor
  */
@@ -30,12 +32,36 @@ AVLTree::AVLTree() {
 }
 
 
+void AVLTree::Insert(int data) {
+  root = InsertHelper(root, data);
+}
+
+
+Node* AVLTree::InsertHelper(Node *root, int data) {
+  if (root == nullptr) {
+    Node *toInsert = new Node;
+    toInsert->data = data;
+    toInsert->left = nullptr;
+    toInsert->right = nullptr;
+    return toInsert;
+  }
+  if (data < root->data) {
+    root->left = InsertHelper(root->left, data);
+    root = RebalanceTree(root);
+  } else {
+    root->right = InsertHelper(root->right, data); 
+    root = RebalanceTree(root);
+  }
+  return root;
+}
+
+
 Node* AVLTree::RebalanceTree(Node *root) {
   // If the balance factor > 1 at the root that means there is some rebalancing
   // required
   int balancefactor = BalanceFactor(root);
   if(balancefactor > 1) {
-    if(root->left != nullptr && BalanceFactor(root->left) > 0) {
+    if(root->left != nullptr && BalanceFactor(root->left) > 1) {
       // TODO: Pending implementation
       root = LeftRotate(root);
     }
@@ -61,11 +87,10 @@ Node* AVLTree::RebalanceTree(Node *root) {
 
 Node* AVLTree::LeftRotate(Node *root) {
   Node *tempRoot = root;
+  std::cout << "Left rotate for " << root->data << std::endl;
   if (root->right != nullptr) {
-    if (root->right->left != nullptr) {
-      tempRoot->right = root->right->left;
-    }
     root = root->right;
+    tempRoot->right = root->right->left;
     root->left = tempRoot;
   }
   return root;
@@ -74,36 +99,11 @@ Node* AVLTree::LeftRotate(Node *root) {
 
 Node* AVLTree::RightRotate(Node *root) {
   Node *tempRoot = root;
+  std::cout << "right rotate for " << root->data << std::endl;
   if(root->left != nullptr) {
-    if(root->left->right != nullptr) {
-      tempRoot->left = root->left->right;
-    }
     root = root->left;
-    root->left = tempRoot;
-  }
-  return root;
-}
-
-
-void AVLTree::Insert(int data) {
-  root = InsertHelper(root, data);
-}
-
-
-Node* AVLTree::InsertHelper(Node *root, int data) {
-  if (root == nullptr) {
-    Node *toInsert = new Node;
-    toInsert->data = data;
-    toInsert->left = nullptr;
-    toInsert->right = nullptr;
-    return toInsert;
-  }
-  if (data < root->data) {
-    root->left = InsertHelper(root->left, data);
-    root = RebalanceTree(root);
-  } else {
-    root->right = InsertHelper(root->right, data); 
-    root = RebalanceTree(root);
+    tempRoot->left = root->left->right;
+    root->right = tempRoot;
   }
   return root;
 }
@@ -175,26 +175,64 @@ bool AVLTree::IsBalanced(Node *root) {
 }
 
 
+inline int AVLTree::BalanceFactor(Node *root) {
+  if (root == nullptr) return 0;
+  return GetTreeSize(root->left) - GetTreeSize(root->right);
+}
+
+
 inline int AVLTree::GetAbsoluteInteger(int num) {
   if (num >= 0) return num;
   else return -num;
 }
 
 
-inline int AVLTree::BalanceFactor(Node *root) {
-  return GetTreeSize(root->left) - GetTreeSize(root->right);
+void AVLTree::DrawTree() {
+  DrawTree(root, 1);
 }
 
 
+void AVLTree::DrawTree(Node *current, int indent) {
+  if (current != nullptr)
+    {
+        DrawTree(current->right, indent + 4);
+        if (indent > 0)
+            std::cout << std::setw(indent) << " ";
+        std::cout << current->data << std::endl;
+        DrawTree(current->left, indent + 4);
+    }
+}
+
+
+int AVLTree::GetMinElement() {
+  return GetMinElement(root);
+}
+
+
+int AVLTree::GetMinElement(Node *root) {
+  if (root->left == nullptr) return root->data;
+  return GetMinElement(root->left);
+}
+
+
+int AVLTree::GetMaxElement() {
+  return GetMaxElement(root);
+}
+
+
+int AVLTree::GetMaxElement(Node *root) {
+  if (root->right == nullptr) return root->data;
+  return GetMaxElement(root->right);
+}
+
 int main() {
   AVLTree t;
-  t.Insert(30);
-  t.Insert(20);
-  t.Insert(10);
-  t.Insert(40);
-  t.Insert(25);
-  t.Insert(27);
-  t.PrintTree();
+  for (int i = 0; i < 100; ++i) {
+    t.Insert(i);
+  }
+  t.DrawTree();
   std::cout << std::boolalpha;
   std::cout << "Balanced tree: " << t.IsBalanced() << std::endl;
+  std::cout << "Min element: " << t.GetMinElement() << std::endl;
+  std::cout << "max element: " << t.GetMaxElement() << std::endl;
 }
