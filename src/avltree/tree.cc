@@ -274,10 +274,43 @@ void AVLTree::VerticalOrderTraversal(Node *root) {
 
   // Traverse the map and print the nodes at each horizontal distance
   for(auto it = nodeMap.begin(); it != nodeMap.end(); it++) {
-    for (int i = 0; i < it->second.size(); ++i)
+    for (size_t i = 0; i < it->second.size(); ++i)
       std::cout << it->second[i] << " ";
     std::cout << std::endl;
   }
+}
+
+
+void AVLTree::TreeView() {
+  TreeView(root);
+}
+
+
+void AVLTree::TreeView(Node *root) {
+  if (root == nullptr) return;
+
+  std::map<int, std::vector<int>> nodeMap;
+  std::queue<std::pair<Node*, int>> nodeQueue;
+  int hd = 0;
+  nodeQueue.push(std::make_pair(root, hd));
+  while(!nodeQueue.empty()) {
+    auto current = nodeQueue.front();
+    hd = current.second;
+    Node *node = current.first;
+    // TODO: Understand the problems in using nodeMap
+    nodeMap[hd].push_back(node->data);
+    if(node->left != nullptr)
+      nodeQueue.push(std::make_pair(node->left, hd-1));
+    if(node->right != nullptr)
+      nodeQueue.push(std::make_pair(node->right, hd+1));
+    nodeQueue.pop();
+  }
+
+  // Traverse through the map and get only the first element
+  for (auto it = nodeMap.begin(); it != nodeMap.end(); ++it) {
+    std::cout << it->second[0] << " ";
+  }
+  std::cout << std::endl;
 }
 
 
@@ -293,4 +326,5 @@ int main() {
   std::cout << "max element: " << t.GetMaxElement() << std::endl;
   // t.LevelOrderTraversal();
   t.VerticalOrderTraversal();
+  t.TreeView();
 }

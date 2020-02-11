@@ -54,6 +54,9 @@ class AVLTree {
     // Conducts vertical order traversal of the tree
     void VerticalOrderTraversal();
 
+    // Prints the tree view of the tree
+    void TreeView();
+
   private:
     // Node variable
     Node *root;
@@ -102,6 +105,9 @@ class AVLTree {
 
     // Vertical order traversal helper function
     void VerticalOrderTraversal(Node *root);
+
+    // Helper function for printing tree view of the tree
+    void TreeView(Node *root);
 };
 
 #endif
