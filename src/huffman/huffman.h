@@ -18,12 +18,13 @@ struct Node {
   Node *left;
   Node *right;
 
-  Node(char data, unsigned frequency) {
+  Node(char data, int frequency) {
     left = right = nullptr;
     this->data = data;
     this->frequency = frequency;
   }
 };
+
 
 // Functor for comparing two nodes in Huffman tree
 class CompareNodes {
@@ -32,11 +33,12 @@ class CompareNodes {
 };
 
 
+// Type definition for priority queue
+typedef std::priority_queue<Node*, std::vector<Node*>, CompareNodes> pq;
+
 // Class for huffman
 class Huffman {
   public:
-    // Default constructor
-    Huffman();
 
     // Constructor with string input
     Huffman(std::string str);
@@ -54,9 +56,10 @@ class Huffman {
     // Root node
     Node *root;
 
-    // Type definition for priority queue
-    typedef std::priority_queue<Node*, std::vector<Node*>, CompareNodes> pq;
+    // Create a frequency map of all characters in the string
+    std::map<char, int> ReturnFrequencyMap(std::string str);
+
 
     // Constructs a priority queue using the frequency map
-    pq ConstructPriorityQueue(std::map<std::string, int> frequencyMap);
+    pq ConstructPriorityQueue(std::map<char, int> frequencyMap);
 };
