@@ -23,6 +23,9 @@
 #include <iostream>
 #include <algorithm>
 #include <iomanip>
+#include <queue>
+#include <map>
+#include <vector>
 
 #include "tree.h"
 
@@ -225,9 +228,62 @@ int AVLTree::GetMaxElement(Node *root) {
   return GetMaxElement(root->right);
 }
 
+
+void AVLTree::LevelOrderTraversal() {
+  LevelOrderTraversal(root);
+}
+
+
+void AVLTree::LevelOrderTraversal(Node* root) {
+  if (root == nullptr) return;
+  std::queue<Node*> nodeQueue;
+  nodeQueue.push(root);
+  while(!nodeQueue.empty()) {
+    Node *current = nodeQueue.front();
+    std::cout << current->data << " ";
+    if (current->left != nullptr) nodeQueue.push(current->left);
+    if (current->right != nullptr) nodeQueue.push(current->right);
+    nodeQueue.pop();
+  }
+}
+
+
+void AVLTree::VerticalOrderTraversal() {
+  VerticalOrderTraversal(root);
+}
+
+
+void AVLTree::VerticalOrderTraversal(Node *root) {
+  if (root == nullptr) return;
+  // data and hd
+  std::map<int, std::vector<int>> nodeMap;
+  int hd = 0;
+  std::queue<std::pair<Node*, int>> nodeQueue;
+  nodeQueue.push(std::make_pair(root, hd));
+  while(!nodeQueue.empty()) {
+    auto current = nodeQueue.front();
+    hd = current.second;
+    Node *node = current.first;
+    nodeMap[hd].push_back(node->data);
+    if(node->left != nullptr)
+      nodeQueue.push(std::make_pair(node->left, hd - 1));
+    if(node->right != nullptr)
+      nodeQueue.push(std::make_pair(node->right, hd + 1));
+    nodeQueue.pop();
+  }
+
+  // Traverse the map and print the nodes at each horizontal distance
+  for(auto it = nodeMap.begin(); it != nodeMap.end(); it++) {
+    for (int i = 0; i < it->second.size(); ++i)
+      std::cout << it->second[i] << " ";
+    std::cout << std::endl;
+  }
+}
+
+
 int main() {
   AVLTree t;
-  for (int i = 0; i < 100; ++i) {
+  for (int i = 0; i < 100; i += 15) {
     t.Insert(i);
   }
   t.DrawTree();
@@ -235,4 +291,6 @@ int main() {
   std::cout << "Balanced tree: " << t.IsBalanced() << std::endl;
   std::cout << "Min element: " << t.GetMinElement() << std::endl;
   std::cout << "max element: " << t.GetMaxElement() << std::endl;
+  // t.LevelOrderTraversal();
+  t.VerticalOrderTraversal();
 }

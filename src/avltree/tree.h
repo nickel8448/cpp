@@ -48,6 +48,12 @@ class AVLTree {
     // Returns the max element in the tree
     int GetMaxElement();
 
+    // Conducts a level order traversal of the tree
+    void LevelOrderTraversal();
+
+    // Conducts vertical order traversal of the tree
+    void VerticalOrderTraversal();
+
   private:
     // Node variable
     Node *root;
@@ -90,6 +96,12 @@ class AVLTree {
 
     // Helper function to return the max element
     int GetMaxElement(Node *root);
+
+    // Level order traversal of the tree helper function
+    void LevelOrderTraversal(Node *root);
+
+    // Vertical order traversal helper function
+    void VerticalOrderTraversal(Node *root);
 };
 
 #endif
