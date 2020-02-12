@@ -50,16 +50,23 @@ class Huffman {
     void PrintCodes();
 
     // Decode a constructed Huffman code
-    void Decode();
+    void Decode(std::string str);
 
   private:
-    // Root node
-    Node *root;
+    pq minHeap;
 
     // Create a frequency map of all characters in the string
     std::map<char, int> ReturnFrequencyMap(std::string str);
-
-
+    
     // Constructs a priority queue using the frequency map
     pq ConstructPriorityQueue(std::map<char, int> frequencyMap);
+
+    // Prints the code for a tree helper function
+    void PrintCodes(Node *root, std::string str);
+
+    // Decodes the string helper function
+    void Decode(Node *root, std::string str, int doneUntil);
+
+    // Decodes a constructed huffman code using a for loop
+    void DecodeLoop(Node *root, std::string str);
 };
