@@ -10,6 +10,8 @@ class LinkedList {
   public: // Default constructor
     LinkedList();
 
+    LinkedList(std::initializer_list<int> init_list);
+
     // Add a node to the linked list
     void AddNode(int data);
 
@@ -30,6 +32,9 @@ class LinkedList {
 
     // Removes duplicates from a sorted linked list
     void RemoveDuplicates(LinkedList *l1);
+
+    // Remove duplicates from a sorted linked list Leetcode problem
+    void RemoveDuplicatesLC();
 
   private:
     ListNode *head;
@@ -54,6 +59,9 @@ class LinkedList {
 
     // Removes duplicates from a sorted linked lis helper function
     ListNode* RemoveDuplicates(ListNode *head);
+
+    // Remove duplicates from a sorted linked list Leetcode problem
+    ListNode* RemoveDuplicatesLC(ListNode *head);
 };
 
 #endif

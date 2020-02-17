@@ -6,7 +6,14 @@
 LinkedList::LinkedList() {
   head = nullptr;
 }
- 
+
+
+LinkedList::LinkedList(std::initializer_list<int> init_list) {
+  for (auto itr = init_list.begin(); itr != init_list.end(); ++itr) {
+    this->AddNode(*itr);
+  }
+}
+
 
 void LinkedList::AddNode(int data) {
   // TODO: why does this have to be a pointer?
@@ -22,7 +29,7 @@ void LinkedList::AddNode(int data) {
 
 
 void LinkedList::PrintList() {
-  PrintList(head); 
+  PrintList(head);
 }
 
 
@@ -37,9 +44,10 @@ void LinkedList::InsertNodeAtTail(int data) {
 
 
 void LinkedList::PrintList(ListNode *head) {
-  while (head != nullptr) {
-    std::cout << head->data << ", ";
-    head = head->next;
+  ListNode *curr = head;
+  while (curr != nullptr) {
+    std::cout << curr->data << ", ";
+    curr = curr->next;
   }
   std::cout << std::endl;
 }
@@ -73,7 +81,7 @@ ListNode* LinkedList::ReverseLinkedListHelper(ListNode *head, ListNode *prev) {
 }
 
 // 1. If head is not null, return prev
-// 2. 
+// 2.
 
 /* ListNode* LinkedList::ReverseLinkedList(ListNode *head) { */
 /*   ListNode *current = head; */
@@ -81,7 +89,6 @@ ListNode* LinkedList::ReverseLinkedListHelper(ListNode *head, ListNode *prev) {
 /*   while (current != nullptr) { */
 /*     // Store next */
 /*     next = current->next; */
-    
 /*     // Reverse current node's pointer */
 /*     current->next = prev; */
 
@@ -158,14 +165,70 @@ int LinkedList::GetNodeFromTail(ListNode *head, int position) {
 }
 
 
-int main() {
-  LinkedList l1;
-  for (int i = 0; i < 5; ++i) {
-    for (int j = 0; j < 5; ++j) {
-      l1.AddNode(4 - i);
+void LinkedList::RemoveDuplicatesLC() {
+  this->head = RemoveDuplicatesLC(head);
+}
+
+
+ListNode* LinkedList::RemoveDuplicatesLC(ListNode* head) {
+  if (head == nullptr) return head;
+  ListNode *curr = head;
+  ListNode *trav = curr->next;
+  while(trav != nullptr) {
+    while(trav->data == curr->data) {
+      trav = trav->next;
+      if (trav == nullptr) break;
     }
+    curr->next = trav;
+    if (trav != nullptr)
+      curr = curr->next;
   }
+  return head;
+}
+
+
+int main() {
+  std::cout << "L1: " << std::endl;
+  LinkedList l1;
+  l1.AddNode(3);
+  l1.AddNode(3);
+  l1.AddNode(2);
+  l1.AddNode(1);
   l1.PrintList();
-  l1.ReverseLinkedList();
+  l1.RemoveDuplicatesLC();
   l1.PrintList();
+  std::cout << "L1 ends " << std::endl;
+
+  std::cout << "L2: " << std::endl;
+  LinkedList l2;
+  l2.AddNode(1);
+  l2.PrintList();
+  l2.RemoveDuplicatesLC();
+  l2.PrintList();
+
+  std::cout << "L2 ends " << std::endl;
+  std::cout << "L3: " << std::endl;
+  LinkedList l3;
+  l3.AddNode(2);
+  l3.AddNode(1);
+  l3.AddNode(1);
+  l3.PrintList();
+  l3.RemoveDuplicatesLC();
+  l3.PrintList();
+
+  std::cout << "L3 ends " << std::endl;
+
+  std::cout << "L4: " << std::endl;
+  LinkedList l4;
+  l4.AddNode(1);
+  l4.AddNode(1);
+  l4.PrintList();
+  l4.RemoveDuplicatesLC();
+  l4.PrintList();
+
+  // l2.RemoveDuplicatesLC();
+  // l2.PrintList();
+  // l3.PrintList();
+  // l3.RemoveDuplicatesLC();
+  // l3.PrintList();
 }
