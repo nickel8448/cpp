@@ -10,6 +10,7 @@ class LinkedList {
   public: // Default constructor
     LinkedList();
 
+    // TODO: Fix the initializer list and check why it doesn't work with print
     LinkedList(std::initializer_list<int> init_list);
 
     // Add a node to the linked list

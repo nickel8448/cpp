@@ -7,5 +7,4 @@ int removeDuplicates(std::vector<int>& nums);
 
 int removeDuplicatesByErasing(std::vector<int>& nums);
 
-
 #endif
