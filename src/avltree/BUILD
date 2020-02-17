@@ -1,4 +1,4 @@
 cc_binary(
-  name = "avl",
+  name = "avltree",
   srcs = ["tree.cc", "tree.h"],
 )

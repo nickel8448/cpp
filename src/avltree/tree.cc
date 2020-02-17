@@ -1,5 +1,5 @@
 /**
- * tree.c
+ * tree.cc
  * Purpose: Implementing AVLTree from scratch
  *  
  * @author Rahul W
@@ -90,7 +90,6 @@ Node* AVLTree::RebalanceTree(Node *root) {
 
 Node* AVLTree::LeftRotate(Node *root) {
   Node *tempRoot = root;
-  std::cout << "Left rotate for " << root->data << std::endl;
   if (root->right != nullptr) {
     root = root->right;
     tempRoot->right = root->right->left;
@@ -102,7 +101,6 @@ Node* AVLTree::LeftRotate(Node *root) {
 
 Node* AVLTree::RightRotate(Node *root) {
   Node *tempRoot = root;
-  std::cout << "right rotate for " << root->data << std::endl;
   if(root->left != nullptr) {
     root = root->left;
     tempRoot->left = root->left->right;
@@ -281,12 +279,12 @@ void AVLTree::VerticalOrderTraversal(Node *root) {
 }
 
 
-void AVLTree::TreeView() {
-  TreeView(root);
+void AVLTree::TopView() {
+  TopView(root);
 }
 
 
-void AVLTree::TreeView(Node *root) {
+void AVLTree::TopView(Node *root) {
   if (root == nullptr) return;
 
   std::map<int, std::vector<int>> nodeMap;
@@ -314,17 +312,27 @@ void AVLTree::TreeView(Node *root) {
 }
 
 
+int AVLTree::LCA(int v1, int v2) {
+  return LCAHelper(root, v1, v2)->data;
+}
+
+
+Node* AVLTree::LCAHelper(Node *root, int v1, int v2) {
+  if (v1 < root->data && v2 < root->data) {
+    return LCAHelper(root->left, v1, v2);
+  }
+  if (v1 > root->data && v2 > root->data) {
+    return LCAHelper(root->right, v1, v2);
+  }
+  return root;
+}
+
+
 int main() {
   AVLTree t;
   for (int i = 0; i < 100; i += 15) {
     t.Insert(i);
   }
   t.DrawTree();
-  std::cout << std::boolalpha;
-  std::cout << "Balanced tree: " << t.IsBalanced() << std::endl;
-  std::cout << "Min element: " << t.GetMinElement() << std::endl;
-  std::cout << "max element: " << t.GetMaxElement() << std::endl;
-  // t.LevelOrderTraversal();
-  t.VerticalOrderTraversal();
-  t.TreeView();
+  std::cout << "Lowest Common ancestor: " << t.LCA(60, 90) << std::endl;
 }

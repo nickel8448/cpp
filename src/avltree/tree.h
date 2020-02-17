@@ -55,7 +55,10 @@ class AVLTree {
     void VerticalOrderTraversal();
 
     // Prints the tree view of the tree
-    void TreeView();
+    void TopView();
+
+    // Returns the lowest common ancestor for the two integers
+    int LCA(int v1, int v2);
 
   private:
     // Node variable
@@ -107,7 +110,10 @@ class AVLTree {
     void VerticalOrderTraversal(Node *root);
 
     // Helper function for printing tree view of the tree
-    void TreeView(Node *root);
+    void TopView(Node *root);
+
+    // Helper function to return the lowest common ancestor
+    Node* LCAHelper(Node *root, int v1, int v2);
 };
 
 #endif
