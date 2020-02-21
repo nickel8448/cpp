@@ -55,6 +55,9 @@ class HashTable {
     // Constructor
     HashTable();
 
+    // Prints the hash table
+    void PrintTable();
+
     // Function to add key and value pair to HashTable. Returns true if the
     // the key was added successfully
     bool Put(K key, V value);
@@ -85,6 +88,11 @@ class HashTable {
     // Resize function
     void Resize();
 
+    // Tracking the current prime number being used
+    int currentPrimeIndex = 2;
+
+    const int numberOfPrimeNumbersAvailable = 76;
+
     // Array of primes
     int PrimeNumbers[76] = {
       3, 7, 11, 17, 23, 29, 37, 47, 59, 71, 89, 107, 131, 163, 197, 239, 293,
@@ -95,9 +103,6 @@ class HashTable {
       968897, 1162687, 1395263, 1674319, 2009191, 2411033, 2893249, 3471899,
       4166287, 4999559, 5999471, 7199369
     };
-
-    // Tracking the current prime number being used
-    int currentPrimeIndex = 2;
 };
 
 #endif
