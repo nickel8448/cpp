@@ -5,6 +5,7 @@
  */
 
 #include <iostream>
+#include <vector>
 
 int main() {
   int num_test_cases;
