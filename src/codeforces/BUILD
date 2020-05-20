@@ -15,3 +15,15 @@ cc_binary(
     srcs = ["radewoosh.cpp"],
     copts = ["-std=c++17"],
 )
+
+cc_binary(
+    name = "taxi_birthday",
+    srcs = ["taxi_birthday.cpp"],
+    copts = ["-std=c++17"],
+)
+
+cc_binary(
+    name = "queue_at_the_school",
+    srcs = ["queue_at_the_school.cpp"],
+    copts = ["-std=c++17"],
+)
