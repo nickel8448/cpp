@@ -40,12 +40,12 @@ int main() {
   for (int i = 0; i < numQuestions; i++) {
     // limak points
     limakCumalativeTime += timeVector.at(i);
-    limakPoints += points.at(i) - (constantTime * limakCumalativeTime);
+    limakPoints += std::max(0, points.at(i) - (constantTime * limakCumalativeTime));
 
     // radewoosh points
     radewooshCumalativeTime += timeVector.at(timeVector.size() - i - 1);
-    radewooshPoints += points.at(points.size() - i - 1) -
-                       (constantTime * radewooshCumalativeTime);
+    radewooshPoints += std::max(0, points.at(points.size() - i - 1) -
+                       (constantTime * radewooshCumalativeTime));
   }
   if (limakPoints == radewooshPoints)
     printf("Tie\n");
