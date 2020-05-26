@@ -29,6 +29,44 @@ public:
   }
 };
 
+Node *copyRandomListHelper(Node *head,
+                           unordered_map<Node *, Node *> &node_map) {
+
+  if (head == nullptr) {
+    return nullptr;
+  }
+  // if we have already processed the current node, then we simply return the
+  // cloned version of it
+  if (node_map.find(head) != node_map.end()) {
+    return node_map.at(head);
+  }
+
+  // Create a new node with the same value as the head
+  Node *new_node = new Node(head->val);
+
+  // Saving the value in the map
+  node_map.insert(std::make_pair(head, new_node));
+
+  // recursively copy the remaining linked list starting once from the next
+  // pointer and then from the random pointer
+  new_node->next = copyRandomListHelper(head->next, node_map);
+  new_node->random = copyRandomListHelper(head->random, node_map);
+
+  return new_node;
+}
+
+Node *copyRandomListLC(Node *head) {
+  // Map will hold old nodes as keys and new nodes as its values
+  unordered_map<Node *, Node *> node_map;
+
+  if (head == nullptr) {
+    return nullptr;
+  }
+
+  Node *new_head = copyRandomListHelper(head, node_map);
+  return new_head;
+}
+
 Node *copyRandomList(Node *head) {
   // current_node -> new_node map
   unordered_map<Node *, Node *> node_map;
